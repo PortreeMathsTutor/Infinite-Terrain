@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayMusic : MonoBehaviour
+{
+    public AudioClip[] clips;
+   public AudioSource audioSource;
+   public bool play;
+    public void TogglePlayMusic()
+    { play = !play; }
+
+    private void Update()
+    {
+        if (play)
+        { audioSource.Pause(); }
+        if (!play)
+        { audioSource.UnPause(); }
+    }
+}
