@@ -1,0 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class ScoreTracker : MonoBehaviour
+{
+    [SerializeField]
+    private ScoreManager scoreManager;
+    public int score;
+    public int livesLeft;
+    public int highScoreInt = 0;
+ //   public Text highScore;
+    public Text scoreTex;
+    public GameObject image1;
+    public GameObject image2;
+    public GameObject image3;
+    public GameObject image4;
+    public GameObject image5;
+    void Start()
+    {
+        scoreManager.SetScoreToZero();
+        scoreManager.SetLivesTo5();
+     //   highScore.text =  " HIGHSCORE: " + PlayerPrefs.GetInt("highScore2", 0).ToString();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+      
+    livesLeft = scoreManager.livesLeft;
+        if (livesLeft<1) { SceneManager.LoadScene(2); }
+
+    score = scoreManager.score;
+        if (livesLeft < 5)
+        {
+            image5.SetActive(true);
+        }
+        if (livesLeft < 4)
+        {
+            image4.SetActive(true);
+        }
+        if (livesLeft <3 )
+        {
+            image3.SetActive(true);
+        }
+        if (livesLeft<2)
+        {
+            image2.SetActive(true);
+        }
+       if (livesLeft < 1)
+        {
+            image1.SetActive(true);
+        }
+        if (score < 0) { score = 0; }
+   scoreTex.text = score.ToString("0");
+
+        if (score > PlayerPrefs.GetInt("highScore2", 0))
+        {
+            PlayerPrefs.SetInt("highScore2", score);
+          //  highScore.text = " HIGHSCORE: = " + score.ToString();
+        }
+    }
+}
