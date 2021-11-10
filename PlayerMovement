@@ -1,0 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    [SerializeField]
+    private float speed1 = .05f;
+
+    private void Update()
+    {
+      
+        if (Input.GetKey("up"))
+        {
+            transform.Translate(transform.up * speed1*.5f);
+        }
+
+        if (Input.GetKey("down"))
+        {
+            transform.Translate(transform.up * -speed1*.5f);
+        }
+   
+        if (Input.GetKey("w"))
+        {
+            transform.Translate(transform.up * speed1*.5f);
+        }
+
+        if (Input.GetKey("s"))
+        {
+            transform.Translate(transform.up * -speed1*.5f);
+        }
+
+        if (Input.GetKey("right"))
+        {
+            transform.Translate(transform.right * speed1);
+        }
+
+        if (Input.GetKey("left"))
+        {
+            transform.Translate(transform.right * -speed1);
+        }
+
+        if (Input.GetKey("d"))
+        {
+            transform.Translate(transform.right * speed1);
+        }
+
+        if (Input.GetKey("a"))
+        {
+            transform.Translate(transform.right * -speed1);
+        }
+    }
+}
