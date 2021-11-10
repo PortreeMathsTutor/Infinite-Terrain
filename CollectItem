@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CollectItem : MonoBehaviour
+{
+    public GameObject myPrefab;
+    [SerializeField]
+    private ScoreManager scoreManager;
+    [SerializeField]
+   public int points = 10;
+    public int score;
+    private GameObject player;
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+       
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            AddScore();
+            transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z -30f);
+            Instantiate(myPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        }
+    }
+
+    private void AddScore()
+    {
+        scoreManager.AddScore(points);
+        score = scoreManager.score;
+    }
+}
